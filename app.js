@@ -16,14 +16,58 @@ function init() {
 
     myMap.geoObjects.add(objectManager);
 
-    $.ajax({
-        url: 'http://localhost:3000/data'
-    }).done(function (data) {
-        dataObjects = data;
-        for (key in data) {
-            objectManager.add(data[key].obj);
+    var data = {
+        "1": {
+            "country": "Russia",
+            "city": "Moscow",
+            "url": "http://google.com",
+            "obj": {
+                "type": "FeatureCollection",
+                "features": [
+                    { "type": "Feature", "id": 1, "geometry": { "type": "Point", "coordinates": [55.831903, 37.411961] }, "properties": { "balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки" } }
+                ]
+            }
+        },
+        "2": {
+            "country": "Russia",
+            "city": "Moscow",
+            "url": "http://google.com",
+            "obj": {
+                "type": "FeatureCollection",
+                "features": [
+                    { "type": "Feature", "id": 2, "geometry": { "type": "Point", "coordinates": [55.931903, 37.491961] }, "properties": { "balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки" } }
+                ]
+            }
+        },
+        "3": {
+            "country": "Russia",
+            "city": "Moscow",
+            "url": "http://google.com",
+            "obj": {
+                "type": "FeatureCollection",
+                "features": [
+                    { "type": "Feature", "id": 3, "geometry": { "type": "Point", "coordinates": [56.831903, 39.411961] }, "properties": { "balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки" } }
+                ]
+            }
+        },
+        "4": {
+            "country": "Russia",
+            "city": "Moscow",
+            "url": "http://google.com",
+            "obj": {
+                "type": "FeatureCollection",
+                "features": [
+                    { "type": "Feature", "id": 4, "geometry": { "type": "Point", "coordinates": [54.831903, 35.411961] }, "properties": { "balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки" } }
+                ]
+            }
         }
-    });
+
+
+    }
+    dataObjects = data;
+    for (var key in data) {
+        objectManager.add(data[key].obj);
+    }
 
     function onObjectEvent(e) {
         var objectId = e.get('objectId');
